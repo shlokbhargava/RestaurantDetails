@@ -28,8 +28,8 @@ onDishSelect(dishId) {
             <NavbarBrand href="/">Ristorante Con Fusion</NavbarBrand>
           </div>
         </Navbar>
-        <Menu dishes={this.state.dishes} onclick={(dishId) => this.onDishSelect(dishId)} />
-        <Dishdetail dish={this.state.dishes.filter((dish) => dish.id === this.state.selectedDish)[0]}/>
+        <Menu dishes={this.state.dishes} onClick={(dishId) => this.onDishSelect(dishId)} />
+        <Dishdetail dish={this.state.dishes.filter((dish) => dish.id === this.state.selectedDish)}/>
       </div>
     );
   }

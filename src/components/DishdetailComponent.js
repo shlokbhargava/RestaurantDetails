@@ -1,9 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Card, CardImg, CardText, CardBody, CardTitle} from 'reactstrap';
 
-export class Dishdetail extends Component {
-
-    renderDish(dish) {
+    function RenderDish({dish}) {
         if(dish != null) {
             return(
                 <Card>
@@ -23,14 +21,14 @@ export class Dishdetail extends Component {
         }
     }
 
-    renderComments(comments) {
-        if(comments != null) {
-            const allComment = comments.map((comment) => {
+    function RenderComments({dish}) {
+        if(dish != null) {
+            const allComment = dish.comments.map((comment) => {
                 return(
                    <ul className="list-unstyled">
                      <li>{comment.comment}</li>
                      <br></br>
-                     <li>-- {comment.author} , { new Intl.DateTimeFormat('en IN', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</li>
+                     <li>-- {comment.author} , { new Intl.DateTimeFormat('en-IN', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</li>
                      <br></br>
                    </ul> 
                 );
@@ -47,20 +45,23 @@ export class Dishdetail extends Component {
         }
     }
 
-    render() {
+    const Dishdetail = (props) => {
+
         return (
             <div className="container">
                 <div className="row">
                     <div className="col-12 col-md-5 m-1">
-                        {this.renderDish(this.props.dish)}
+                        <RenderDish dish={props.dish} />
                     </div>
                     <div className="col-12 col-md m-1">
-                        {this.renderComments(this.props.dish.comments)}
+                        <RenderComments dish={props.dish} />
                     </div>
                 </div>                 
             </div>
         )
     }
-}
+
+export default Dishdetail;    
+
 
 
